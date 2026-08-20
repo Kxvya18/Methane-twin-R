@@ -580,21 +580,4 @@ Stages are checkpointed. If a long data-download stage is already complete, it i
 
 ---
 
-# Research validity rules
 
-Do not put a result on a CV until `artifacts/evaluation/final_test_metrics.json` exists from a real held-out test run.
-
-Do not call:
-- EMIT emission estimates "perfect ground truth",
-- upwind proxy coordinates "true source coordinates",
-- feature importance "causality",
-- random train/test splits "generalization".
-
-Read:
-
-```text
-docs/RESEARCH_PROTOCOL.md
-docs/DATA_CARD.md
-docs/MATHEMATICS.md
-docs/VALIDITY_AND_LIMITATIONS.md
-```
