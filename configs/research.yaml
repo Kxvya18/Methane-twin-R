@@ -1,0 +1,79 @@
+seed: 42
+
+paths:
+  raw_plume: data/raw/emit_plume
+  raw_enhancement: data/raw/emit_enhancement
+  raw_era5: data/raw/era5
+  interim: data/interim
+  processed: data/processed
+  artifacts: artifacts
+  facilities: data/external/facilities.csv
+
+emit:
+  start: "2024-01-01"
+  end: "2026-01-01"
+  # Global is possible but expensive. Use a scientifically motivated study region first.
+  bbox: [-108.0, 29.0, -99.0, 37.0]
+  version: "002"
+  max_plume_granules: 1200
+  max_enhancement_granules: 500
+
+era5:
+  variables:
+    - 10m_u_component_of_wind
+    - 10m_v_component_of_wind
+    - 2m_temperature
+    - surface_pressure
+    - boundary_layer_height
+  half_box_deg: 0.25
+
+dataset:
+  image_size: 128
+  region_bin_deg: 2.0
+  negatives_per_enhancement_scene: 4
+  negative_max_ppmm: 40.0
+  min_positive_pixels: 12
+  log_transform: true
+
+physics:
+  synthetic_samples: 50000
+  image_size: 128
+  pixel_size_m: 60.0
+  q_min_kg_h: 25.0
+  q_max_kg_h: 10000.0
+  wind_min_m_s: 0.8
+  wind_max_m_s: 15.0
+
+model:
+  base_channels: 48
+  attention_heads: 6
+  dropout: 0.20
+
+training:
+  batch_size: 48
+  pretrain_epochs: 35
+  finetune_frozen_epochs: 5
+  finetune_epochs: 25
+  lr_pretrain: 0.0008
+  lr_finetune: 0.00008
+  weight_decay: 0.0001
+  patience: 6
+
+tuning:
+  trials: 30
+  epochs_per_trial: 5
+
+loss:
+  detection: 1.0
+  segmentation: 1.0
+  source: 0.75
+  emission: 1.0
+  physics: 0.20
+  proxy_source_weight: 0.20
+
+calibration:
+  alpha: 0.05
+
+attribution:
+  max_distance_km: 20.0
+  graph_edge_km: 12.0

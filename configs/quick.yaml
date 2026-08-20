@@ -1,0 +1,78 @@
+seed: 42
+
+paths:
+  raw_plume: data/raw/emit_plume
+  raw_enhancement: data/raw/emit_enhancement
+  raw_era5: data/raw/era5
+  interim: data/interim
+  processed: data/processed
+  artifacts: artifacts
+  facilities: data/external/facilities.csv
+
+emit:
+  start: "2025-01-01"
+  end: "2025-02-01"
+  bbox: [-105.0, 31.0, -101.0, 34.5]
+  version: "002"
+  max_plume_granules: 25
+  max_enhancement_granules: 15
+
+era5:
+  variables:
+    - 10m_u_component_of_wind
+    - 10m_v_component_of_wind
+    - 2m_temperature
+    - surface_pressure
+    - boundary_layer_height
+  half_box_deg: 0.25
+
+dataset:
+  image_size: 96
+  region_bin_deg: 2.0
+  negatives_per_enhancement_scene: 2
+  negative_max_ppmm: 50.0
+  min_positive_pixels: 8
+  log_transform: true
+
+physics:
+  synthetic_samples: 2500
+  image_size: 96
+  pixel_size_m: 60.0
+  q_min_kg_h: 50.0
+  q_max_kg_h: 5000.0
+  wind_min_m_s: 1.0
+  wind_max_m_s: 12.0
+
+model:
+  base_channels: 24
+  attention_heads: 4
+  dropout: 0.15
+
+training:
+  batch_size: 32
+  pretrain_epochs: 5
+  finetune_frozen_epochs: 2
+  finetune_epochs: 5
+  lr_pretrain: 0.001
+  lr_finetune: 0.0002
+  weight_decay: 0.0001
+  patience: 3
+
+tuning:
+  trials: 5
+  epochs_per_trial: 2
+
+loss:
+  detection: 1.0
+  segmentation: 1.0
+  source: 0.75
+  emission: 1.0
+  physics: 0.15
+  proxy_source_weight: 0.25
+
+calibration:
+  alpha: 0.05
+
+attribution:
+  max_distance_km: 15.0
+  graph_edge_km: 10.0

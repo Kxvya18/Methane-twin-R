@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "methanetwin-r"
+version = "1.0.0"
+description = "Physics-informed spatiotemporal ML for methane super-emitter detection and quantification"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=1.26",
+  "pandas>=2.2",
+  "scipy>=1.12",
+  "scikit-learn>=1.5",
+  "PyYAML>=6.0",
+  "joblib>=1.4",
+  "matplotlib>=3.8",
+  "requests>=2.32",
+  "pydantic>=2.8",
+  "fastapi>=0.115",
+  "uvicorn>=0.30",
+  "python-multipart>=0.0.9",
+  "streamlit>=1.37"
+]
+
+[project.optional-dependencies]
+research = [
+  "torch>=2.3",
+  "torchvision>=0.18",
+  "rasterio>=1.3",
+  "xarray>=2024.6",
+  "netCDF4>=1.7",
+  "pyarrow>=16",
+  "earthaccess>=0.10",
+  "cdsapi>=0.7",
+  "optuna>=3.6",
+  "networkx>=3.3",
+  "shapely>=2.0",
+  "geopandas>=1.0"
+]
+
+[project.scripts]
+methanetwin = "methanetwin_r.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

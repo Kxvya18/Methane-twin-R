@@ -1,0 +1,217 @@
+# ======================================
+# PYTHON ENVIRONMENTS
+# ======================================
+
+.venv/
+venv/
+env/
+ENV/
+
+# ======================================
+# SECRETS / AUTHENTICATION
+# ======================================
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# NASA Earthdata / authentication
+.netrc
+cookies.txt
+*.token
+*.secret
+.earthaccess*
+earthdata_credentials*
+
+# Copernicus / ERA5 CDS credentials
+.cdsapirc
+cds_credentials*
+
+# Generic credentials
+credentials.json
+secrets.json
+*.pem
+*.key
+
+auth/
+credentials/
+tokens/
+
+# ======================================
+# PYTHON CACHE / TEST CACHE
+# ======================================
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+.coverage
+.coverage.*
+htmlcov/
+
+# ======================================
+# BUILD / PACKAGING
+# ======================================
+
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ======================================
+# JUPYTER
+# ======================================
+
+.ipynb_checkpoints/
+
+# ======================================
+# MACOS / IDE
+# ======================================
+
+.DS_Store
+.idea/
+.vscode/
+
+*.swp
+*.swo
+
+# ======================================
+# RAW DOWNLOADED DATA
+# ======================================
+
+data/raw/
+data/downloads/
+
+data/raw/emit_plume/
+data/raw/emit_enhancement/
+data/raw/era5/
+
+# ======================================
+# INTERMEDIATE / PROCESSED DATA
+# ======================================
+
+data/interim/
+data/processed/
+data/cache/
+data/catalog/
+data/features/
+
+# Allow deliberately created lightweight examples
+!data/sample/
+!data/sample/**
+
+# ======================================
+# NASA / GEOSPATIAL / REMOTE-SENSING DATA
+# ======================================
+
+*.tif
+*.tiff
+*.geotiff
+
+*.nc
+*.nc4
+*.netcdf
+
+*.hdf
+*.hdf4
+*.hdf5
+*.h5
+
+# ======================================
+# GENERATED NUMPY / MODEL DATASETS
+# ======================================
+
+*.npy
+*.npz
+
+# Allow tiny test fixtures when deliberately included
+!tests/fixtures/*.npy
+!tests/fixtures/*.npz
+
+# ======================================
+# TRAINED MODELS / CHECKPOINTS
+# ======================================
+
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+*.joblib
+*.pkl
+*.pickle
+
+models/
+checkpoints/
+
+# ======================================
+# TRAINING / EXPERIMENT OUTPUTS
+# ======================================
+
+outputs/
+runs/
+experiments/
+
+artifacts/models/
+artifacts/checkpoints/
+artifacts/experiments/
+
+# ======================================
+# OPTUNA / LOCAL DATABASES
+# ======================================
+
+optuna*.db
+optuna*.sqlite
+optuna*.sqlite3
+
+*.db
+*.sqlite
+*.sqlite3
+
+# ======================================
+# GENERATED PREDICTIONS / SIMULATION DATA
+# ======================================
+
+predictions/
+prediction_rasters/
+generated_plumes/
+
+synthetic_dataset/
+synthetic_data/
+
+# ======================================
+# LOGS
+# ======================================
+
+*.log
+logs/
+
+# ======================================
+# TEMPORARY / CACHE
+# ======================================
+
+tmp/
+temp/
+.cache/
+
+# ======================================
+# ARCHIVES
+# ======================================
+
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+
+# ======================================
+# OTHER LARGE / LOCAL ARTIFACTS
+# ======================================
+
+*.tmp
+*.bak
